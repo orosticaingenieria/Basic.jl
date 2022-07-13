@@ -1,0 +1,7 @@
+name = "Basic"
+uuid = "4e4d7e63-70c6-4e97-9f13-c64d97bf40e8"
+authors = ["beorostica-asusFX505GT-win <beorostica@uc.cl>"]
+version = "0.1.0"
+
+[deps]
+Test = "8dfed614-e22c-5e08-85e1-65c5234f0b40"
