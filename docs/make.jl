@@ -1,10 +1,25 @@
-using Documenter
+using Documenter, Literate
 using Basic
+
+lit = joinpath(@__DIR__, "lit")
+src = joinpath(@__DIR__, "src")
+
+for (root, _, files) ∈ walkdir(lit), file ∈ files
+    splitext(file)[2] == ".jl" || continue
+    ipath = joinpath(root, file)
+    opath = splitdir(replace(ipath, lit=>src))[1]
+    Literate.markdown(ipath, opath)
+    Literate.notebook(ipath, opath; execute = false)
+end
 
 makedocs(
     sitename = "Basic",
     format = Documenter.HTML(),
-    modules = [Basic]
+    modules = [Basic],
+    pages = [
+        "Home" => "index.md",
+        "Literate" => "example.md"
+    ],
 )
 
 # Documenter can also automatically deploy documentation to gh-pages.
