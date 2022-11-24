@@ -1,6 +1,7 @@
 using Documenter, Literate
 using Basic
 
+org, reps = :orosticaingenieria, :Basic
 lit = joinpath(@__DIR__, "lit")
 src = joinpath(@__DIR__, "src")
 gen = joinpath(@__DIR__, "src/generated")
