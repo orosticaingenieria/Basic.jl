@@ -3,11 +3,12 @@ using Basic
 
 lit = joinpath(@__DIR__, "lit")
 src = joinpath(@__DIR__, "src")
+gen = joinpath(@__DIR__, "src/generated")
 
 for (root, _, files) ∈ walkdir(lit), file ∈ files
     splitext(file)[2] == ".jl" || continue
     ipath = joinpath(root, file)
-    opath = splitdir(replace(ipath, lit=>src))[1]
+    opath = splitdir(replace(ipath, lit => gen))[1]
     Literate.markdown(ipath, opath)
     Literate.notebook(ipath, opath; execute = false)
 end
@@ -18,7 +19,7 @@ makedocs(
     modules = [Basic],
     pages = [
         "Home" => "index.md",
-        "Literate" => "example.md"
+        "Literate" => joinpath("generated/", "example.md")
     ],
 )
 
